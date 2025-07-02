@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Medicine Education</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            color: #334155; /* Darker text color */
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #0ea5e9, #3b82f6); /* Blue gradient */
+        }
+        .unit-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .unit-card:hover {
+            transform: translateY(-5-px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Mobile menu specific styles */
+        .mobile-menu {
+            display: none; /* Hidden by default */
+        }
+        .mobile-menu.active {
+            display: block; /* Shown when active */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm py-4 px-6 md:px-10 sticky top-0 z-50 rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600 rounded-md p-2">MedEd Pro</a>
+            <!-- Hamburger Menu Icon for Mobile -->
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 font-medium rounded-md p-2">Home</a>
+                <a href="#units" class="text-gray-600 hover:text-blue-600 font-medium rounded-md p-2">Units</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 font-medium rounded-md p-2">About Us</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium rounded-md p-2">Contact</a>
+            </div>
+        </div>
+        <!-- Mobile Menu Links (initially hidden) -->
+        <div id="mobile-menu" class="mobile-menu md:hidden mt-4 bg-white rounded-lg shadow-md py-2">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Home</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="gradient-bg text-white py-20 px-6 md:px-10 text-center rounded-b-xl shadow-lg">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 rounded-md">
+                Empowering Young Doctors in Internal Medicine
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90 rounded-md">
+                Your go-to resource for comprehensive and up-to-date medical education.
+            </p>
+            <a href="#units" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
+                Explore Units
+            </a>
+        </div>
+    </header>
+
+    <!-- Internal Medicine Units Section -->
+    <section id="units" class="py-16 px-6 md:px-10 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 rounded-md">Our Internal Medicine Units</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cardiology -->
+                <a href="cardiology.html" class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200 block">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Cardiology</h3>
+                    <p class="text-gray-600">Delve into the complexities of the heart and circulatory system, from diagnostics to advanced treatments.</p>
+                </a>
+                <!-- Nephrology -->
+                <a href="nephrology.html" class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200 block">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Nephrology</h3>
+                    <p class="text-gray-600">Understand kidney diseases, renal function, and the latest in dialysis and transplantation.</p>
+                </a>
+                <!-- Endocrinology -->
+                <a href="endocrinology.html" class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Endocrinology</h3>
+                    <p class="text-gray-600">Explore hormonal imbalances, metabolic disorders, and the endocrine system's vital role.</p>
+                </a>
+                <!-- Neurology -->
+                <div class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Neurology</h3>
+                    <p class="text-gray-600">Gain insights into the brain, spinal cord, and nervous system disorders and their management.</p>
+                </div>
+                <!-- Pulmonology -->
+                <div class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Pulmonology</h3>
+                    <p class="text-gray-600">Focus on respiratory diseases, lung health, and critical care aspects of pulmonary medicine.</p>
+                </div>
+                <!-- Gastroenterology -->
+                <div class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Gastroenterology</h3>
+                    <p class="text-gray-600">Learn about digestive system disorders, liver diseases, and endoscopic procedures.</p>
+                </div>
+                <!-- Infectious Diseases -->
+                <div class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Infectious Diseases</h3>
+                    <p class="text-gray-600">Study the diagnosis, treatment, and prevention of infectious diseases and global health challenges.</p>
+                </div>
+                <!-- Dermatology -->
+                <div class="unit-card bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Dermatology</h3>
+                    <p class="text-gray-600">Discover skin conditions, their diagnosis, and therapeutic approaches in internal medicine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section (Placeholder) -->
+    <section id="about" class="py-16 px-6 md:px-10 bg-white">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 rounded-md">About MedEd Pro</h2>
+            <p class="text-lg text-gray-600 leading-relaxed rounded-md">
+                MedEd Pro is dedicated to providing high-quality, accessible medical education for young doctors. Our platform offers curated content, case studies, and expert insights across various internal medicine specialties, helping you excel in your practice.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section (Placeholder) -->
+    <section id="contact" class="py-16 px-6 md:px-10 bg-gray-50">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800 rounded-md">Get in Touch</h2>
+            <p class="text-lg text-gray-600 mb-8 rounded-md">
+                Have questions or suggestions? We'd love to hear from you!
+            </p>
+            <a href="mailto:info@mededpro.com" class="bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out">
+                Email Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-10 text-center rounded-t-lg">
+        <div class="container mx-auto">
+            <p>&copy; 2025 MedEd Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the mobile menu button and the mobile menu div
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Add an event listener to the button to toggle the 'active' class
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Optional: Close the mobile menu when a link is clicked (for smoother navigation)
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

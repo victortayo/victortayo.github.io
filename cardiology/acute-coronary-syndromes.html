@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACS Clinical Navigator: Nigerian Context</title>
+    
+    <!-- Chosen Palette: "Clinical Calm" - A palette of warm grays, muted blues for trust/calm, and a soft amber for highlights/warnings. -->
+    <!-- Application Structure Plan: A single-page application structured as a tab-based dashboard. This design breaks the dense report into logical, task-oriented sections (e.g., Overview, Diagnosis, Management), allowing a user (a young doctor) to quickly navigate to the information they need without extensive scrolling. The flow follows a natural clinical pathway: understanding the problem's scale (Epidemiology), identifying it (Spectrum & Presentation), confirming it (Diagnosis), treating it (Management & Reperfusion), and planning for the future (Long-Term Care). This is more usable than a linear document, especially in a clinical setting where quick access to specific information is key. -->
+    <!-- Visualization & Content Choices: 
+        - Nigerian Epidemiology (MACE/Mortality): Goal: Inform/Impact. Viz: Horizontal Bar Chart (Chart.js). Justification: Directly visualizes the high rates of adverse outcomes from the RACE-Nigeria study, providing immediate context on the problem's severity.
+        - Nigerian Risk Factors: Goal: Compare/Inform. Viz: Interactive Bar Chart (Chart.js) with buttons to toggle between Semi-Urban and Rural data. Justification: Makes the prevalence data from the two studies explorable and directly comparable, highlighting the urban/rural differences mentioned in the report.
+        - ACS Spectrum: Goal: Compare/Organize. Viz: A three-column card layout (HTML/Tailwind). Justification: A clean, side-by-side view is the most effective way to compare and contrast UA, NSTEMI, and STEMI based on their core differentiating features.
+        - Reperfusion Pathway: Goal: Organize/Show Process. Viz: A flowchart created with HTML/Tailwind flexbox and Unicode arrows. Justification: Visually simplifies the complex decision-making process for STEMI reperfusion, making the time-sensitive pathway easy to understand at a glance while adhering to the no-SVG constraint.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #2563eb; /* blue-600 */
+            border-bottom-color: #2563eb;
+        }
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-button.active {
+            background-color: #2563eb; /* blue-600 */
+            color: white;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 40vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .section-content {
+            display: none;
+        }
+        .section-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div id="app" class="min-h-screen">
+        <!-- Header & Navigation -->
+        <header class="bg-white shadow-md sticky top-0 z-40">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <span class="text-2xl font-bold text-blue-600">ACS Navigator</span>
+                    </div>
+                    <nav class="hidden md:flex space-x-4">
+                        <a href="#overview" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Overview</a>
+                        <a href="#spectrum" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Spectrum</a>
+                        <a href="#risk-presentation" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Risk & Presentation</a>
+                        <a href="#diagnosis" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Diagnosis</a>
+                        <a href="#management" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Management</a>
+                        <a href="#prevention" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Prevention</a>
+                    </nav>
+                    <div class="md:hidden">
+                        <select id="mobile-nav" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="#overview">Overview</option>
+                            <option value="#spectrum">Spectrum</option>
+                            <option value="#risk-presentation">Risk & Presentation</option>
+                            <option value="#diagnosis">Diagnosis</option>
+                            <option value="#management">Management</option>
+                            <option value="#prevention">Prevention</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+            
+            <!-- Section: Overview & Epidemiology -->
+            <section id="overview" class="section-content">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">The ACS Challenge in Nigeria</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">
+                        Acute Coronary Syndromes represent a growing, life-threatening emergency in Nigeria. This navigator provides a streamlined, evidence-based guide for young doctors, translating key data into actionable clinical insights.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
+                        <h3 class="text-3xl font-bold text-blue-600">59.1</h3>
+                        <p class="mt-2 text-sm font-medium text-slate-500">Cases per 100,000 Hospitalized Adults/Year in Nigeria</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
+                        <h3 class="text-3xl font-bold text-amber-600">6 hrs</h3>
+                        <p class="mt-2 text-sm font-medium text-slate-500">Median Pre-Hospital Delay for STEMI Patients</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
+                        <h3 class="text-3xl font-bold text-red-600">8.1%</h3>
+                        <p class="mt-2 text-sm font-medium text-slate-500">In-Hospital Mortality Rate for ACS</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center">
+                        <h3 class="text-3xl font-bold text-red-700">>75%</h3>
+                        <p class="mt-2 text-sm font-medium text-slate-500">of Global CVD Deaths Occur in Low/Middle-Income Countries</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h2 class="text-2xl font-bold text-slate-800 text-center mb-2">Adverse Outcomes from RACE-Nigeria Study</h2>
+                    <p class="text-center text-slate-500 mb-6">These figures highlight the urgent need for optimized care pathways and timely interventions.</p>
+                    <div class="chart-container">
+                        <canvas id="outcomesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: ACS Spectrum -->
+            <section id="spectrum" class="section-content">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">The Spectrum of ACS</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">ACS is classified into three main types based on ECG findings and cardiac biomarkers. This differentiation is critical for guiding immediate management.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Unstable Angina Card -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col">
+                        <h2 class="text-2xl font-bold text-amber-600">Unstable Angina (UA)</h2>
+                        <p class="text-slate-600 mt-2 mb-4 flex-grow">Myocardial ischemia without infarction. Clinically unstable and a warning sign.</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-slate-100 rounded-lg">
+                                <h4 class="font-semibold text-slate-700">ECG Findings</h4>
+                                <p class="text-sm text-slate-500">Normal, or transient ST depression / T-wave inversion.</p>
+                            </div>
+                            <div class="p-3 bg-slate-100 rounded-lg">
+                                <h4 class="font-semibold text-slate-700">Cardiac Troponins</h4>
+                                <p class="text-sm text-slate-500">Normal. No significant myocardial cell death.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NSTEMI Card -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-300 ring-2 ring-blue-200 flex flex-col">
+                        <h2 class="text-2xl font-bold text-blue-600">NSTEMI</h2>
+                        <p class="text-slate-600 mt-2 mb-4 flex-grow">Subendocardial myocardial infarction. Confirmed myocardial necrosis.</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-slate-700">ECG Findings</h4>
+                                <p class="text-sm text-slate-500">ST depression or T-wave inversion. NO persistent ST elevation.</p>
+                            </div>
+                            <div class="p-3 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-slate-700">Cardiac Troponins</h4>
+                                <p class="text-sm text-slate-500">Elevated. Confirms myocardial infarction.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- STEMI Card -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-red-300 ring-2 ring-red-200 flex flex-col">
+                        <h2 class="text-2xl font-bold text-red-600">STEMI</h2>
+                        <p class="text-slate-600 mt-2 mb-4 flex-grow">Transmural myocardial infarction. Requires immediate reperfusion.</p>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-red-50 rounded-lg">
+                                <h4 class="font-semibold text-slate-700">ECG Findings</h4>
+                                <p class="text-sm text-slate-500">Persistent ST-segment elevation in ≥2 contiguous leads.</p>
+                            </div>
+                            <div class="p-3 bg-red-50 rounded-lg">
+                                <h4 class="font-semibold text-slate-700">Cardiac Troponins</h4>
+                                <p class="text-sm text-slate-500">Elevated. Confirms widespread myocardial damage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mt-8 bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                    <p class="text-sm text-amber-800"><span class="font-bold">Clinical Pearl:</span> The distinction between UA and NSTEMI is often retrospective, based on serial troponin results 8-12 hours after symptom onset. Maintain a high index of suspicion.</p>
+                </div>
+            </section>
+            
+            <!-- Section: Risk & Presentation -->
+            <section id="risk-presentation" class="section-content">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">Risk Factors & Clinical Presentation</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Understanding the local risk profile and recognizing both typical and atypical symptoms are key to early diagnosis.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Risk Factors -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h2 class="text-2xl font-bold text-slate-800 text-center">Cardiovascular Risk Factors in Nigeria</h2>
+                        <p class="text-center text-slate-500 my-4">Prevalence varies significantly by location. Select a dataset to explore.</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <button id="urbanBtn" class="risk-data-btn px-4 py-2 text-sm font-medium rounded-md bg-blue-600 text-white">Semi-Urban</button>
+                            <button id="ruralBtn" class="risk-data-btn px-4 py-2 text-sm font-medium rounded-md bg-white text-slate-700 border border-slate-300">Rural (40-70yrs)</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="riskFactorChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Clinical Presentation -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                         <h2 class="text-2xl font-bold text-slate-800 text-center mb-4">Recognizing ACS Symptoms</h2>
+                         <div class="space-y-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-700 mb-2">Typical Presentation</h3>
+                                <p class="text-slate-600">Classic chest pain (dull, heavy, crushing) radiating to the arm, shoulder, or jaw, often with shortness of breath, sweating, and nausea.</p>
+                            </div>
+                            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                                <h3 class="text-xl font-semibold text-amber-800 mb-2">Atypical Presentations</h3>
+                                <p class="text-amber-700 mb-3">Critically important to recognize, especially in women, the elderly, and patients with diabetes. Absence of chest pain does NOT rule out ACS.</p>
+                                <ul class="list-disc list-inside text-amber-700 space-y-1 text-sm">
+                                    <li>Epigastric pain or "indigestion"</li>
+                                    <li>Isolated or unexplained shortness of breath</li>
+                                    <li>Unusual or profound fatigue</li>
+                                    <li>Nausea and vomiting</li>
+                                    <li>Jaw, neck, or back pain</li>
+                                </ul>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: Diagnosis -->
+            <section id="diagnosis" class="section-content">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">Diagnostic Pathway</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">A rapid, systematic approach integrating clinical assessment, ECG, and biomarkers is essential.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                        <!-- Step 1 -->
+                        <div class="text-center p-4 border border-slate-200 rounded-lg flex-1">
+                            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 font-bold text-xl">1</div>
+                            <h3 class="mt-3 text-lg font-semibold text-slate-800">12-Lead ECG</h3>
+                            <p class="mt-1 text-sm text-slate-500">Perform within 10 mins. Look for ST elevation (STEMI), ST depression, or T-wave inversion (NSTE-ACS).</p>
+                        </div>
+                        <div class="text-2xl text-slate-300 font-light hidden md:block">→</div>
+                        <!-- Step 2 -->
+                        <div class="text-center p-4 border border-slate-200 rounded-lg flex-1">
+                            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 font-bold text-xl">2</div>
+                            <h3 class="mt-3 text-lg font-semibold text-slate-800">Cardiac Troponins</h3>
+                            <p class="mt-1 text-sm text-slate-500">Draw at presentation and serially (e.g., 3-6 hrs later). Rising/falling pattern confirms MI.</p>
+                        </div>
+                        <div class="text-2xl text-slate-300 font-light hidden md:block">→</div>
+                        <!-- Step 3 -->
+                        <div class="text-center p-4 border border-slate-200 rounded-lg flex-1">
+                            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 font-bold text-xl">3</div>
+                            <h3 class="mt-3 text-lg font-semibold text-slate-800">Risk Stratify</h3>
+                            <p class="mt-1 text-sm text-slate-500">Use scores (TIMI, GRACE) to guide urgency of intervention, especially in NSTE-ACS.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: Management -->
+            <section id="management" class="section-content">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">Acute Management & Reperfusion</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Immediate goals are pain relief, stabilizing the patient, and restoring blood flow. Time is myocardium.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Pharmacotherapy -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h2 class="text-2xl font-bold text-slate-800 text-center mb-6">Initial Pharmacotherapy</h2>
+                        <div id="management-tabs">
+                             <div class="mb-4 border-b border-slate-200">
+                                <nav class="flex space-x-2" aria-label="Tabs">
+                                    <button class="management-tab-btn active px-3 py-2 font-medium text-sm rounded-t-md text-slate-700 bg-slate-100" data-target="antiplatelet">Antiplatelets</button>
+                                    <button class="management-tab-btn px-3 py-2 font-medium text-sm rounded-t-md text-slate-500 hover:bg-slate-50" data-target="anticoag">Anticoagulants</button>
+                                    <button class="management-tab-btn px-3 py-2 font-medium text-sm rounded-t-md text-slate-500 hover:bg-slate-50" data-target="anti-ischemic">Anti-Ischemics</button>
+                                    <button class="management-tab-btn px-3 py-2 font-medium text-sm rounded-t-md text-slate-500 hover:bg-slate-50" data-target="others">Others</button>
+                                </nav>
+                            </div>
+                            <div class="management-content" id="content-antiplatelet">
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong class="text-slate-800">Aspirin:</strong> 162-325 mg chewed immediately, then 81mg daily.</li>
+                                    <li><strong class="text-slate-800">P2Y12 Inhibitor (DAPT):</strong> Add to Aspirin.
+                                        <ul class="list-disc list-inside ml-4 text-slate-500">
+                                            <li><strong class="text-slate-600">Ticagrelor:</strong> 180 mg load, then 90 mg BID (Preferred for PCI).</li>
+                                            <li><strong class="text-slate-600">Clopidogrel:</strong> 300-600 mg load, then 75 mg daily.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="management-content hidden" id="content-anticoag">
+                                <p class="text-sm">Parenteral anticoagulation is vital. Choice depends on strategy (PCI vs. conservative).</p>
+                                <ul class="list-disc list-inside ml-4 text-slate-500 text-sm">
+                                    <li>Unfractionated Heparin (UFH)</li>
+                                    <li>Enoxaparin (LMWH)</li>
+                                    <li>Fondaparinux</li>
+                                </ul>
+                            </div>
+                            <div class="management-content hidden" id="content-anti-ischemic">
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong class="text-slate-800">Nitroglycerin:</strong> Sublingual or IV for chest pain. <strong class="text-red-600">Caution in inferior MI.</strong></li>
+                                    <li><strong class="text-slate-800">Beta-Blockers:</strong> Start within 24h if no contraindications. Reduces myocardial O2 demand.</li>
+                                    <li><strong class="text-slate-800">Morphine:</strong> For pain refractory to nitrates. Use judiciously.</li>
+                                </ul>
+                            </div>
+                            <div class="management-content hidden" id="content-others">
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong class="text-slate-800">High-Intensity Statin:</strong> Atorvastatin 80mg or Rosuvastatin 40mg. Start ASAP.</li>
+                                    <li><strong class="text-slate-800">ACE Inhibitor / ARB:</strong> Especially for patients with LVEF <40%, HTN, or DM.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reperfusion -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <h2 class="text-2xl font-bold text-slate-800 text-center mb-6">STEMI Reperfusion Strategy</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-800">Primary PCI is Gold Standard</h4>
+                                    <p class="text-sm text-slate-500">If available. Goal: Wire cross < 90 mins (or < 120 mins if transferred).</p>
+                                </div>
+                            </div>
+                            <div class="pl-12">
+                                <p class="text-2xl text-slate-300 font-light -mt-2">↓</p>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-800">If PCI Not Available Timely...</h4>
+                                    <p class="text-sm text-slate-500">...the reality for many in Nigeria.</p>
+                                </div>
+                            </div>
+                            <div class="pl-12">
+                                <p class="text-2xl text-slate-300 font-light -mt-2">↓</p>
+                            </div>
+                             <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-800">Fibrinolytic Therapy</h4>
+                                    <p class="text-sm text-slate-500">Goal: Door-to-needle < 30 mins. Followed by transfer to a PCI-capable center for angiography within 2-24 hours ("Pharmaco-invasive Strategy").</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+             <!-- Section: Long-Term Prevention -->
+            <section id="prevention" class="section-content">
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800">Long-Term Care & Secondary Prevention</h1>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Recovery is a lifelong journey. Aggressive risk factor management and medication adherence are critical to prevent recurrent events.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800 text-center mb-6">Cornerstone Medications</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-sm">
+                        <div>
+                            <p class="font-bold text-blue-600 text-lg">DAPT</p>
+                            <p class="text-slate-500">Aspirin + P2Y12 Inhibitor for at least 12 months.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-blue-600 text-lg">Statins</p>
+                            <p class="text-slate-500">High-intensity therapy for all patients.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-blue-600 text-lg">Beta-Blockers</p>
+                            <p class="text-slate-500">Long-term, especially with LV dysfunction.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-blue-600 text-lg">ACEi / ARB</p>
+                            <p class="text-slate-500">Especially with LV dysfunction, HTN, or DM.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
+                    <h3 class="font-bold text-xl text-blue-800">The Adherence Challenge in Nigeria</h3>
+                    <p class="mt-2 text-blue-700">Medication non-adherence is a major barrier to successful outcomes. Studies show adherence as low as 39%. Polypharmacy, cost, and lack of understanding are key drivers.</p>
+                    <p class="mt-3 text-sm text-blue-700 font-semibold">Your Role: Educate patients on *why* each drug is vital, simplify regimens when possible, discuss costs, and collaborate with pharmacists. Adherence counseling is as important as prescribing.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section-content');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            const managementTabs = document.querySelectorAll('.management-tab-btn');
+            const managementContents = document.querySelectorAll('.management-content');
+
+            const riskDataButtons = document.querySelectorAll('.risk-data-btn');
+
+            let outcomesChartInstance;
+            let riskFactorChartInstance;
+            
+            // Data for charts
+            const outcomesData = {
+                labels: ['Major Adverse Cardiac Events (MACE)', 'In-Hospital Mortality', '1-Year Mortality'],
+                datasets: [{
+                    label: 'Percentage (%)',
+                    data: [30.8, 8.1, 13.3],
+                    backgroundColor: ['#3b82f6', '#ef4444', '#b91c1c'],
+                    borderColor: ['#1e40af', '#991b1b', '#7f1d1d'],
+                    borderWidth: 1
+                }]
+            };
+
+            const riskData = {
+                urban: {
+                    labels: ['Hypertension', 'Alcohol Abuse', 'Obesity', 'Diabetes', 'Smoking'],
+                    data: [26.4, 12.1, 11.3, 9.0, 6.9]
+                },
+                rural: {
+                    labels: ['Hypertension', 'Generalized Obesity', 'Abdominal Obesity', 'Dysglycaemia', 'Hypercholesterolaemia'],
+                    data: [46.4, 30.0, 31.0, 4.4, 3.7]
+                }
+            };
+            
+            // Function to activate a section
+            function activateSection(hash) {
+                sections.forEach(section => {
+                    if ('#' + section.id === hash) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Update mobile nav selection
+                mobileNav.value = hash;
+
+                // Create charts only when their section is visible
+                if (hash === '#overview' && !outcomesChartInstance) {
+                    createOutcomesChart();
+                }
+                if (hash === '#risk-presentation' && !riskFactorChartInstance) {
+                    createRiskFactorChart('urban'); // Default to urban
+                }
+            }
+
+            // Chart Creation Functions
+            function createOutcomesChart() {
+                const ctx = document.getElementById('outcomesChart').getContext('2d');
+                outcomesChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: outcomesData,
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Percentage (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function createRiskFactorChart(datasetKey) {
+                if (riskFactorChartInstance) {
+                    riskFactorChartInstance.destroy();
+                }
+                const ctx = document.getElementById('riskFactorChart').getContext('2d');
+                riskFactorChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: riskData[datasetKey].labels,
+                        datasets: [{
+                            label: 'Prevalence (%)',
+                            data: riskData[datasetKey].data,
+                            backgroundColor: '#3b82f6',
+                            borderColor: '#1e40af',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                             y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Prevalence (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Desktop Navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const hash = e.target.getAttribute('href');
+                    window.location.hash = hash;
+                });
+            });
+
+            // Mobile Navigation
+            mobileNav.addEventListener('change', (e) => {
+                window.location.hash = e.target.value;
+            });
+            
+            // Handle hash changes on load and back/forward
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash || '#overview';
+                activateSection(hash);
+            });
+            
+            // Initial load
+            const initialHash = window.location.hash || '#overview';
+            activateSection(initialHash);
+
+            // Management Tabs Logic
+            managementTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.target;
+
+                    managementTabs.forEach(t => {
+                        t.classList.remove('active', 'bg-slate-100', 'text-slate-700');
+                        t.classList.add('text-slate-500', 'hover:bg-slate-50');
+                    });
+                    tab.classList.add('active', 'bg-slate-100', 'text-slate-700');
+                    tab.classList.remove('text-slate-500', 'hover:bg-slate-50');
+
+                    managementContents.forEach(content => {
+                        if (content.id === `content-${target}`) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Risk Factor Chart Button Logic
+            riskDataButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const isUrban = button.id === 'urbanBtn';
+                    
+                    document.getElementById('urbanBtn').classList.toggle('bg-blue-600', isUrban);
+                    document.getElementById('urbanBtn').classList.toggle('text-white', isUrban);
+                    document.getElementById('urbanBtn').classList.toggle('bg-white', !isUrban);
+                    document.getElementById('urbanBtn').classList.toggle('text-slate-700', !isUrban);
+                    document.getElementById('urbanBtn').classList.toggle('border', !isUrban);
+
+                    document.getElementById('ruralBtn').classList.toggle('bg-blue-600', !isUrban);
+                    document.getElementById('ruralBtn').classList.toggle('text-white', !isUrban);
+                    document.getElementById('ruralBtn').classList.toggle('bg-white', isUrban);
+                    document.getElementById('ruralBtn').classList.toggle('text-slate-700', isUrban);
+                    document.getElementById('ruralBtn').classList.toggle('border', isUrban);
+
+                    createRiskFactorChart(isUrban ? 'urban' : 'rural');
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
