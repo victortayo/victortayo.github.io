@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Officers’ Guide & Knowledge Bank – Nigeria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f7f9fc;
+        }
+        .primary-bg { background-color: #003049; }
+        .primary-text { color: #003049; }
+        .accent-bg { background-color: #00a8e8; }
+        .accent-text { color: #00a8e8; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="primary-bg text-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">HO Guide</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/" class="hover:text-gray-300">Home</a>
+                <a href="src/pages/guide/index.html" class="hover:text-gray-300">Guide</a>
+                <a href="src/pages/kb/index.html" class="hover:text-gray-300">Knowledge Bank</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="/" class="block px-6 py-2 text-white hover:bg-gray-700">Home</a>
+            <a href="src/pages/guide/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Guide</a>
+            <a href="src/pages/kb/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Knowledge Bank</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-6 py-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold primary-text mb-4">Welcome to the House Officers' Guide</h1>
+        <p class="text-lg text-gray-600 mb-8">Your comprehensive resource for navigating housemanship in Nigeria.</p>
+        <div class="space-y-4 md:space-y-0 md:space-x-4">
+            <a href="src/pages/guide/index.html" class="inline-block accent-bg text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">Start Guide</a>
+            <a href="src/pages/kb/index.html" class="inline-block bg-gray-200 primary-text font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300">Go to Knowledge Bank</a>
+        </div>
+
+        <section class="mt-16 text-left">
+            <h2 class="text-2xl font-bold primary-text mb-4">Recent Updates</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold text-lg">New Article Added</h3>
+                <p class="text-gray-600">Check out the new guide on "Clerking a Patient" in the Internal Medicine section.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="primary-bg text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 House Officers’ Guide & Knowledge Bank – Nigeria. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="src/app.js"></script>
+</body>
+</html>
