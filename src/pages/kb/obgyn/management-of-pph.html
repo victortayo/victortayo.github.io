@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management of PPH - HO Guide</title>
+    <title>Management of Postpartum Hemorrhage (PPH) - HO Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -11,21 +11,22 @@
         .primary-bg { background-color: #003049; }
         .primary-text { color: #003049; }
         .accent-text { color: #00a8e8; }
-        .toc a { display: block; padding: 0.5rem 1rem; border-left: 2px solid transparent; }
-        .toc a:hover { background-color: #eef2f7; border-left-color: #00a8e8; }
-        .content-section { scroll-margin-top: 4rem; }
+        .toc a { display: block; padding: 0.5rem 1rem; border-left: 2px solid transparent; transition: all 0.2s ease-in-out; }
+        .toc a:hover, .toc a.active { background-color: #eef2f7; border-left-color: #00a8e8; color: #003049; font-weight: 600;}
+        .content-section { scroll-margin-top: 5rem; }
+        .mnemonic-card { background-color: #eef2f7; border-left: 4px solid #d62828; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
     <!-- Header -->
-    <header class="primary-bg text-white shadow-md sticky top-0 z-10">
+    <header class="primary-bg text-white shadow-md sticky top-0 z-20">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="../../../../index.html" class="text-2xl font-bold">HO Guide</a>
             <div class="hidden md:flex space-x-6">
                 <a href="../../../../index.html" class="hover:text-gray-300">Home</a>
                 <a href="../../../guide/index.html" class="hover:text-gray-300">Guide</a>
-                <a href="../../../kb/index.html" class="hover:text-gray-300">Knowledge Bank</a>
+                <a href="../../../kb/index.html" class="hover:text-gray-300">Stuff</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -36,7 +37,7 @@
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="../../../../index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Home</a>
             <a href="../../../guide/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Guide</a>
-            <a href="../../../kb/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Knowledge Bank</a>
+            <a href="../../../kb/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Stuff</a>
         </div>
     </header>
 
@@ -47,11 +48,15 @@
             <aside class="lg:w-1/4 lg:sticky top-24 self-start">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-bold primary-text mb-4">Table of Contents</h3>
-                    <nav class="toc">
-                        <a href="#definition">Definition</a>
-                        <a href="#risk-factors">Risk Factors</a>
-                        <a href="#management">Management</a>
-                        <a href="#complications">Complications</a>
+                    <nav id="toc" class="toc text-gray-600">
+                        <a href="#introduction">Introduction</a>
+                        <a href="#definition">Definition & Classification</a>
+                        <a href="#causes">The "4 Ts": Causes of PPH</a>
+                        <a href="#prevention">Prevention (AMTSL)</a>
+                        <a href="#management">Managing PPH: Step-by-Step</a>
+                        <a href="#interventions">Advanced Interventions</a>
+                        <a href="#mnemonic">The 'HAEMOSTASIS' Mnemonic</a>
+                        <a href="#post-care">Post-Hemorrhage Care</a>
                     </nav>
                 </div>
             </aside>
@@ -59,28 +64,130 @@
             <!-- Topic Content -->
             <article class="lg:w-3/4">
                 <div class="bg-white p-8 rounded-lg shadow-md">
-                    <a href="../obgyn.html" class="text-sm accent-text hover:underline mb-4 inline-block">&larr; Back to OBGYN Topics</a>
+                    <a href="../obstetrics-gynaecology.html" class="text-sm accent-text hover:underline mb-4 inline-block">← Back to Obstetrics & Gynaecology</a>
                     <h1 class="text-4xl font-bold primary-text mb-2">Management of Postpartum Hemorrhage (PPH)</h1>
-                    <p class="text-gray-500 mb-8">Last updated: July 11, 2025</p>
+                    <p class="text-gray-500 mb-2">Last updated: July 12, 2025</p>
+                    <p class="text-gray-500 mb-8">Author(s): The HO Guide Team</p>
+                    
+                    <figure class="my-6">
+                        <img class="w-full h-auto max-h-80 rounded-lg shadow-md object-cover" src="../../../../public/images/management-of-pph-hero.jpg" alt="A team of healthcare professionals working together in a calm and coordinated manner in a delivery room.">
+                    </figure>
 
-                    <section id="definition" class="content-section mb-8">
-                        <h2 class="text-2xl font-bold primary-text mb-4">Definition</h2>
-                        <p class="text-gray-700 leading-relaxed">[Detailed definition of Postpartum Hemorrhage...]</p>
+                    <div class="flex items-center space-x-4 mb-8">
+                        <button id="play-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>
+                            <span>Read Aloud</span>
+                        </button>
+                        <button id="pause-button" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg" style="display: none;">Pause</button>
+                        <button id="stop-button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg" style="display: none;">Stop</button>
+                    </div>
+
+                    <section id="introduction" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">Introduction</h2>
+                        <p class="text-gray-700 leading-relaxed">Postpartum hemorrhage (PPH) remains a formidable obstetric emergency and a leading cause of maternal morbidity and mortality worldwide. A rapid, coordinated, and evidence-based response is critical to prevent tragic outcomes. This article provides a comprehensive guide for healthcare professionals on the definition, causes, prevention, and systematic management of PPH.</p>
                     </section>
 
-                    <section id="risk-factors" class="content-section mb-8">
-                        <h2 class="text-2xl font-bold primary-text mb-4">Risk Factors</h2>
-                        <p class="text-gray-700 leading-relaxed">[Detailed information about the risk factors for PPH...]</p>
+                    <section id="definition" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">Definition and Classification</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">Postpartum hemorrhage (PPH) is defined by excessive blood loss after childbirth and is classified based on its timing and severity. An accurate and timely diagnosis is critical for managing this potentially life-threatening condition.</p>
+                        
+                        <h3 class="text-xl font-semibold primary-text mb-2">Primary Postpartum Hemorrhage</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">Primary PPH occurs **within the first 24 hours after delivery**. While traditionally defined by specific blood loss volumes, the modern clinical focus has shifted to a more functional definition that considers the patient's stability. The definitions include:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                            <li><strong>Quantitative Blood Loss:</strong> A cumulative blood loss of 1,000 ml or more, or bleeding associated with signs/symptoms of hypovolemia.</li>
+                            <li><strong>Clinical Signs of Instability:</strong> Any bleeding that affects the hemodynamic stability of the woman.</li>
+                            <li><strong>Change in Hematocrit:</strong> A decrease in hematocrit of 10% or more.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold primary-text mb-2">Secondary Postpartum Hemorrhage</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">Secondary PPH is abnormal bleeding occurring **24 hours after delivery until 12 weeks postpartum**. It is usually caused by postpartum endometritis or retained products of conception.</p>
+                    </section>
+
+                    <section id="causes" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">The "4 Ts": Understanding the Etiology of PPH</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">A useful mnemonic for systematically identifying the cause of PPH is the "4 Ts":</p>
+                        
+
+
+                        <dl class="space-y-3">
+                            <dt class="font-bold text-lg primary-text">Tone (Uterine Atony)</dt>
+                            <dd class="text-gray-700 pl-4">The most common cause (70-80%). The uterus fails to contract sufficiently.</dd>
+                            
+                            <dt class="font-bold text-lg primary-text">Trauma</dt>
+                            <dd class="text-gray-700 pl-4">Lacerations of the genital tract or uterine rupture.</dd>
+
+                            <dt class="font-bold text-lg primary-text">Tissue</dt>
+                            <dd class="text-gray-700 pl-4">Retained placental fragments or blood clots.</dd>
+                            
+                            <dt class="font-bold text-lg primary-text">Thrombin</dt>
+                            <dd class="text-gray-700 pl-4">Coagulopathies that impair blood clotting.</dd>
+                        </dl>
+                    </section>
+
+                    <section id="prevention" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">Prevention: Active Management of the Third Stage of Labor (AMTSL)</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">Proactive measures are paramount. AMTSL is a proven set of interventions that can prevent the majority of PPH cases. The core components are the administration of a uterotonic agent (Oxytocin), controlled cord traction, and uterine massage.</p>
                     </section>
 
                     <section id="management" class="content-section mb-8">
-                        <h2 class="text-2xl font-bold primary-text mb-4">Management</h2>
-                        <p class="text-gray-700 leading-relaxed">[Detailed information about the management of PPH...]</p>
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">Managing PPH: Step-by-Step</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">When PPH occurs, a structured, multidisciplinary response is essential. The initial response involves two key stages that should occur simultaneously.</p>
+                        <h3 class="text-xl font-semibold primary-text mb-2">Stage 1: Initial Response and Resuscitation</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                            <li><strong>Call for Help:</strong> Alert the entire team.</li>
+                            <li><strong>Resuscitate:</strong> Secure two large-bore IV lines, begin fluid resuscitation, administer oxygen, and draw blood for labs and cross-matching.</li>
+                        </ul>
+                        <h3 class="text-xl font-semibold primary-text mb-2">Stage 2: Identify and Treat the Cause</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">Simultaneously with resuscitation, determine and address the source of the bleeding based on the "4 Ts". This includes uterine massage, administration of uterotonics, repairing any trauma, and removing retained tissue.</p>
+                    </section>
+                    
+                    <section id="interventions" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">Advanced Interventions for Refractory PPH</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">If bleeding is not controlled by initial measures, escalate to more invasive procedures without delay.</p>
+                        
+                        <h3 class="text-xl font-semibold primary-text mt-6 mb-2">Uterine Balloon Tamponade</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">This is a highly effective, minimally invasive technique where a device like a Bakri balloon is inserted into the uterine cavity and inflated with saline, applying direct pressure to the bleeding surfaces.</p>
+                        <figure class="my-6">
+                            <img class="w-full max-w-md mx-auto h-auto rounded-lg shadow-md" src="../../../../public/images/bakri-balloon.jpg" alt="Medical illustration showing a Bakri balloon correctly placed inside the uterus for tamponade.">
+                            <figcaption class="mt-2 text-sm text-center text-gray-500">Fig. 1: Uterine Balloon Tamponade.</figcaption>
+                        </figure>
+
+                        <h3 class="text-xl font-semibold primary-text mt-6 mb-2">Uterine Compression Sutures</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">If laparotomy is required, surgical techniques like the B-Lynch suture can mechanically compress an atonic uterus, often serving as a uterus-sparing alternative to hysterectomy.</p>
+                        <figure class="my-6">
+                            <img class="w-full max-w-md mx-auto h-auto rounded-lg shadow-md" src="../../../../public/images/b-lynch-suture.png" alt="Diagram of the B-Lynch compression suture technique for controlling uterine atony.">
+                            <figcaption class="mt-2 text-sm text-center text-gray-500">Fig. 2: B-Lynch Compression Suture.</figcaption>
+                        </figure>
                     </section>
 
-                    <section id="complications" class="content-section">
-                        <h2 class="text-2xl font-bold primary-text mb-4">Complications</h2>
-                        <p class="text-gray-700 leading-relaxed">[Detailed information about the complications of PPH...]</p>
+
+                    <section id="mnemonic" class="content-section mb-8">
+                        <div class="mnemonic-card p-6 rounded-lg shadow">
+                            <h3 class="text-2xl font-bold flex items-center mb-4 text-red-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5.002L10 18.451l7.834-13.449A11.954 11.954 0 0110 1.944zM10 4.354a9.954 9.954 0 016.273 2.924L10 14.549l-6.273-7.271A9.954 9.954 0 0110 4.354z" clip-rule="evenodd" />
+                                </svg>
+                                The 'HAEMOSTASIS' Mnemonic
+                            </h3>
+                            <dl class="space-y-2 text-gray-800">
+                                <dt class="font-bold">H - Help:</dt> <dd class="pl-5">Call for experienced help immediately.</dd>
+                                <dt class="font-bold">A - Assess & Resuscitate:</dt> <dd class="pl-5">Simultaneously check vitals (ABC), secure IV access, and begin fluid resuscitation.</dd>
+                                <dt class="font-bold">E - Etiology & Empty bladder:</dt> <dd class="pl-5">Determine the cause (using "4 Ts") and ensure the bladder is empty.</dd>
+                                <dt class="font-bold">M - Massage:</dt> <dd class="pl-5">Perform uterine massage.</dd>
+                                <dt class="font-bold">O - Oxytocics:</dt> <dd class="pl-5">Administer uterotonic drugs systematically.</dd>
+                                <dt class="font-bold">S - Shift to Theater:</dt> <dd class="pl-5">If bleeding is uncontrolled, do not delay moving to an operating theater.</dd>
+                                <dt class="font-bold">T - Tamponade:</dt> <dd class="pl-5">Use an intrauterine balloon tamponade.</dd>
+                                <dt class="font-bold">A - Apply compression Sutures:</dt> <dd class="pl-5">If tamponade fails, apply uterine compression sutures.</dd>
+                                <dt class="font-bold">S - Systematic pelvic devascularization:</dt> <dd class="pl-5">Ligate vessels supplying the uterus.</dd>
+                                <dt class="font-bold">I - Interventional Radiography:</dt> <dd class="pl-5">Where available, perform uterine artery embolization.</dd>
+                                <dt class="font-bold">S - Subtotal/Total Hysterectomy:</dt> <dd class="pl-5">The final, life-saving step.</dd>
+                            </dl>
+                        </div>
+                    </section>
+
+                    <section id="post-care" class="content-section">
+                        <h2 class="text-2xl font-bold primary-text mb-4 border-b pb-2">Post-Hemorrhage Care</h2>
+                        <p class="text-gray-700 leading-relaxed">Management does not end when the bleeding stops. Patients require close monitoring for at least 24 hours. Key considerations include managing postpartum anemia and providing psychological support for the patient and her family. Adhering to a systematic approach can effectively manage this obstetric emergency and significantly reduce the risk of maternal mortality.</p>
                     </section>
                 </div>
             </article>
@@ -90,10 +197,99 @@
     <!-- Footer -->
     <footer class="primary-bg text-white py-6 mt-12">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 House Officers’ Guide & Knowledge Bank – Nigeria.</p>
+            <p>© 2025 House Officers’ Guide.</p>
         </div>
     </footer>
 
-    <script src="../../../app.js"></script>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-full shadow-lg transition-opacity duration-300 opacity-0 z-10">
+        ↑
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Text-to-Speech
+            const playButton = document.getElementById('play-button');
+            const pauseButton = document.getElementById('pause-button');
+            const stopButton = document.getElementById('stop-button');
+            const articleContent = document.querySelector('article').innerText;
+            let utterance = null;
+
+            playButton.addEventListener('click', () => {
+                if (speechSynthesis.paused && utterance) {
+                    speechSynthesis.resume();
+                } else {
+                    utterance = new SpeechSynthesisUtterance(articleContent);
+                    utterance.onend = () => {
+                        playButton.style.display = 'flex';
+                        pauseButton.style.display = 'none';
+                        stopButton.style.display = 'none';
+                    };
+                    speechSynthesis.cancel();
+                    speechSynthesis.speak(utterance);
+                }
+                playButton.style.display = 'none';
+                pauseButton.style.display = 'inline-block';
+                stopButton.style.display = 'inline-block';
+            });
+
+            pauseButton.addEventListener('click', () => {
+                speechSynthesis.pause();
+                pauseButton.style.display = 'none';
+                playButton.style.display = 'flex';
+            });
+
+            stopButton.addEventListener('click', () => {
+                speechSynthesis.cancel();
+                playButton.style.display = 'flex';
+                pauseButton.style.display = 'none';
+                stopButton.style.display = 'none';
+            });
+
+            window.addEventListener('beforeunload', () => {
+                speechSynthesis.cancel();
+            });
+
+            // Back to Top Button
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.opacity = '1';
+                } else {
+                    backToTopButton.style.opacity = '0';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Active TOC link highlighting
+            const sections = document.querySelectorAll('.content-section');
+            const tocLinks = document.querySelectorAll('.toc a');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-20% 0px -80% 0px" });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
 </body>
 </html>

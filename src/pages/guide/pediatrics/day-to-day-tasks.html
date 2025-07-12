@@ -25,7 +25,7 @@
             <div class="hidden md:flex space-x-6">
                 <a href="../../../../index.html" class="hover:text-gray-300">Home</a>
                 <a href="../../../guide/index.html" class="hover:text-gray-300">Guide</a>
-                <a href="../../../kb/index.html" class="hover:text-gray-300">Knowledge Bank</a>
+                <a href="../../../kb/index.html" class="hover:text-gray-300">Stuff</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -36,7 +36,7 @@
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="../../../../index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Home</a>
             <a href="../../../guide/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Guide</a>
-            <a href="../../../kb/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Knowledge Bank</a>
+            <a href="../../../kb/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Stuff</a>
         </div>
     </header>
 
@@ -61,7 +61,20 @@
                 <div class="bg-white p-8 rounded-lg shadow-md">
                     <a href="../pediatrics.html" class="text-sm accent-text hover:underline mb-4 inline-block">&larr; Back to Pediatrics Guide</a>
                     <h1 class="text-4xl font-bold primary-text mb-2">Day-to-Day Tasks in Pediatrics</h1>
-                    <p class="text-gray-500 mb-8">Last updated: July 11, 2025</p>
+                    <p class="text-gray-500 mb-2">Last updated: July 11, 2025</p>
+                    <p class="text-gray-500 mb-8">Author(s): [Author Name(s)]</p>
+
+                    <div class="flex items-center space-x-4 mb-8">
+                        <button id="play-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            Read this article
+                        </button>
+                        <button id="pause-button" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" style="display: none;">
+                            Pause
+                        </button>
+                        <button id="stop-button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" style="display: none;">
+                            Stop
+                        </button>
+                    </div>
 
                     <section id="morning-rounds" class="content-section mb-8">
                         <h2 class="text-2xl font-bold primary-text mb-4">Morning Rounds</h2>
@@ -90,10 +103,71 @@
     <!-- Footer -->
     <footer class="primary-bg text-white py-6 mt-12">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 House Officers’ Guide & Knowledge Bank – Nigeria.</p>
+            <p>&copy; 2025 House Officers’ Guide.</p>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-opacity duration-300" style="display: none;">
+        &uarr; Top
+    </button>
+
     <script src="../../../app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const playButton = document.getElementById('play-button');
+            const pauseButton = document.getElementById('pause-button');
+            const stopButton = document.getElementById('stop-button');
+            const articleContent = document.querySelector('article');
+
+            let utterance = null;
+
+            playButton.addEventListener('click', () => {
+                if (speechSynthesis.paused && utterance) {
+                    speechSynthesis.resume();
+                    playButton.style.display = 'none';
+                    pauseButton.style.display = 'inline-block';
+                } else {
+                    const text = articleContent.innerText;
+                    utterance = new SpeechSynthesisUtterance(text);
+                    speechSynthesis.speak(utterance);
+                    playButton.style.display = 'none';
+                    pauseButton.style.display = 'inline-block';
+                    stopButton.style.display = 'inline-block';
+                }
+            });
+
+            pauseButton.addEventListener('click', () => {
+                speechSynthesis.pause();
+                pauseButton.style.display = 'none';
+                playButton.style.display = 'inline-block';
+            });
+
+            stopButton.addEventListener('click', ().=> {
+                speechSynthesis.cancel();
+                playButton.style.display = 'inline-block';
+                pauseButton.style.display = 'none';
+                stopButton.style.display = 'none';
+            });
+
+            window.addEventListener('beforeunload', () => {
+                speechSynthesis.cancel();
+            });
+
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
