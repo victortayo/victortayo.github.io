@@ -1,0 +1,79 @@
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+.dark-mode .primary-bg {
+    background-color: #2d3748;
+}
+
+.dark-mode .primary-text {
+    color: #e2e8f0;
+}
+
+.dark-mode .accent-text {
+    color: #63b3ed;
+}
+
+.dark-mode .bg-white {
+    background-color: #2d3748;
+}
+
+.dark-mode .text-gray-500 {
+    color: #a0aec0;
+}
+
+.dark-mode .text-gray-600 {
+    color: #a0aec0;
+}
+
+.dark-mode .text-gray-700 {
+    color: #cbd5e0;
+}
+
+.dark-mode .toc a {
+    color: #a0aec0;
+}
+
+.dark-mode .toc a:hover {
+    background-color: #4a5568;
+    border-left-color: #63b3ed;
+}
+
+.dark-mode .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark-mode .hover\:text-gray-300:hover {
+    color: #cbd5e0;
+}
+
+.dark-mode input[type="search"] {
+    background-color: #4a5568;
+    border-color: #718096;
+    color: #e2e8f0;
+}
+
+.dark-mode .list-disc li::marker {
+    color: #a0aec0;
+}
+
+.dark-mode .text-blue-600 {
+    color: #63b3ed;
+}
+
+.dark-mode .accent-bg {
+    background-color: #00a8e8;
+}
+
+.dark-mode .bg-gray-200 {
+    background-color: #4a5568;
+}
+
+.dark-mode .hover\:bg-blue-600:hover {
+    background-color: #007ea7;
+}
+
+.dark-mode .hover\:bg-gray-300:hover {
+    background-color: #2d3748;
+}

@@ -14,7 +14,21 @@
         .toc a { display: block; padding: 0.5rem 1rem; border-left: 2px solid transparent; }
         .toc a:hover { background-color: #eef2f7; border-left-color: #00a8e8; }
         .content-section { scroll-margin-top: 4rem; }
+
+        @media (max-width: 768px) {
+            main.container {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            article .p-8 {
+                padding: 1rem;
+            }
+            p {
+                font-size: 0.875rem;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="../../../../styles/dark-mode.css">
 </head>
 <body class="flex flex-col min-h-screen">
 
@@ -22,10 +36,17 @@
     <header class="primary-bg text-white shadow-md sticky top-0 z-10">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="../../../../index.html" class="text-2xl font-bold">HO Guide</a>
-            <div class="hidden md:flex space-x-6">
+            <div class="hidden md:flex items-center space-x-6">
                 <a href="../../../../index.html" class="hover:text-gray-300">Home</a>
                 <a href="../../../guide/index.html" class="hover:text-gray-300">Guide</a>
                 <a href="../../../kb/index.html" class="hover:text-gray-300">Stuff</a>
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" id="dark-mode-toggle" class="hidden">
+                    <label for="dark-mode-toggle" class="cursor-pointer">
+                        <svg id="sun-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.707.707M4.04 19.96l-.707.707M21 12h-1M4 12H3m16.96-4.04l-.707-.707M7.07 16.93l-.707-.707"></path><circle cx="12" cy="12" r="5"></circle></svg>
+                        <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9 9 0 008.354-5.646z"></path></svg>
+                    </label>
+                </div>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -63,18 +84,6 @@
                     <h1 class="text-4xl font-bold primary-text mb-2">Day-to-Day Tasks in Internal Medicine</h1>
                     <p class="text-gray-500 mb-2">Last updated: July 11, 2025</p>
                     <p class="text-gray-500 mb-8">Author(s): [Author Name(s)]</p>
-
-                    <div class="flex items-center space-x-4 mb-8">
-                        <button id="play-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                            Read this article
-                        </button>
-                        <button id="pause-button" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" style="display: none;">
-                            Pause
-                        </button>
-                        <button id="stop-button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" style="display: none;">
-                            Stop
-                        </button>
-                    </div>
 
                     <section id="morning-rounds" class="content-section mb-8">
                         <h2 class="text-2xl font-bold primary-text mb-4">Morning Rounds</h2>
@@ -115,45 +124,6 @@
     <script src="../../../app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const playButton = document.getElementById('play-button');
-            const pauseButton = document.getElementById('pause-button');
-            const stopButton = document.getElementById('stop-button');
-            const articleContent = document.querySelector('article');
-
-            let utterance = null;
-
-            playButton.addEventListener('click', () => {
-                if (speechSynthesis.paused && utterance) {
-                    speechSynthesis.resume();
-                    playButton.style.display = 'none';
-                    pauseButton.style.display = 'inline-block';
-                } else {
-                    const text = articleContent.innerText;
-                    utterance = new SpeechSynthesisUtterance(text);
-                    speechSynthesis.speak(utterance);
-                    playButton.style.display = 'none';
-                    pauseButton.style.display = 'inline-block';
-                    stopButton.style.display = 'inline-block';
-                }
-            });
-
-            pauseButton.addEventListener('click', () => {
-                speechSynthesis.pause();
-                pauseButton.style.display = 'none';
-                playButton.style.display = 'inline-block';
-            });
-
-            stopButton.addEventListener('click', () => {
-                speechSynthesis.cancel();
-                playButton.style.display = 'inline-block';
-                pauseButton.style.display = 'none';
-                stopButton.style.display = 'none';
-            });
-
-            window.addEventListener('beforeunload', () => {
-                speechSynthesis.cancel();
-            });
-
             const backToTopButton = document.getElementById('back-to-top');
 
             window.addEventListener('scroll', () => {
