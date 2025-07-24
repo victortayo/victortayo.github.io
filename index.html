@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Officers’ Guide & Stuff – Nigeria</title>
+    <title>House Officers’ Mini Guide & Stuff</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -30,9 +30,8 @@
                 <a href="src/pages/kb/index.html" class="hover:text-gray-300">Stuff</a>
                 <div class="flex items-center space-x-2">
                     <input type="checkbox" id="dark-mode-toggle" class="hidden">
-                    <label for="dark-mode-toggle" class="cursor-pointer">
-                        <svg id="sun-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.707.707M4.04 19.96l-.707.707M21 12h-1M4 12H3m16.96-4.04l-.707-.707M7.07 16.93l-.707-.707"></path><circle cx="12" cy="12" r="5"></circle></svg>
-                        <svg id="moon-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9 9 0 008.354-5.646z"></path></svg>
+                    <label for="dark-mode-toggle" class="cursor-pointer text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                     </label>
                 </div>
             </div>
@@ -54,7 +53,7 @@
     <!-- Main Content -->
     <main class="flex-grow container mx-auto px-6 py-12 text-center w-full">
         <h1 class="text-4xl md:text-5xl font-bold primary-text mb-4">Welcome to the House Officers' Guide</h1>
-        <p class="text-base text-gray-600 mb-8">Your comprehensive resource for navigating housemanship in FMCA.</p>
+        <p class="text-base text-gray-600 mb-8">A mini resource for housemanship in FMCA.</p>
         <div class="space-y-4 md:space-y-0 md:space-x-4">
             <a href="src/pages/guide/index.html" class="inline-block accent-bg text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">Start Guide</a>
             <a href="src/pages/kb/index.html" class="inline-block bg-gray-200 primary-text font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300">Go to Stuff</a>
@@ -62,9 +61,8 @@
 
         <section class="mt-16 text-left">
             <h2 class="text-2xl font-bold primary-text mb-4">Recent Updates</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-semibold text-lg">New Article Added</h3>
-                <p class="text-sm text-gray-600">Check out the new guide on "Clerking a Patient" in the Internal Medicine section.</p>
+            <div id="recent-updates-container" class="space-y-4">
+                <!-- Dynamic content will be injected here -->
             </div>
         </section>
     </main>
@@ -76,6 +74,7 @@
         </div>
     </footer>
 
+    <script src="src/data.js"></script>
     <script src="src/app.js"></script>
 </body>
 </html>

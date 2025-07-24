@@ -27,4 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const recentUpdatesContainer = document.getElementById('recent-updates-container');
+
+    if (recentUpdatesContainer && typeof articles !== 'undefined') {
+        const sortedArticles = articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const recentArticles = sortedArticles.slice(0, 3);
+
+        recentArticles.forEach(article => {
+            const articleElement = document.createElement('div');
+            articleElement.className = 'bg-white p-6 rounded-lg shadow-md';
+            articleElement.innerHTML = `
+                <h3 class="font-semibold text-lg"><a href="${article.url}" class="hover:underline">${article.title}</a></h3>
+                <p class="text-sm text-gray-600">${article.category} - ${new Date(article.date).toLocaleDateString()}</p>
+            `;
+            recentUpdatesContainer.appendChild(articleElement);
+        });
+    }
 });

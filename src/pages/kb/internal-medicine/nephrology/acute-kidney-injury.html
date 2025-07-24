@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acute Kidney Injury - HO Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; background-color: #f7f9fc; }
+        .primary-bg { background-color: #003049; }
+        .primary-text { color: #003049; }
+        .accent-text { color: #00a8e8; }
+        .toc a { display: block; padding: 0.5rem 1rem; border-left: 2px solid transparent; }
+        .toc a:hover { background-color: #eef2f7; border-left-color: #00a8e8; }
+        .content-section { scroll-margin-top: 4rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+
+        @media (max-width: 768px) {
+            main.container {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            article .p-8 {
+                padding: 1rem;
+            }
+            p, li, td, th {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../../../../../styles/dark-mode.css">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="primary-bg text-white shadow-md sticky top-0 z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../../../../index.html" class="text-2xl font-bold">HO Guide</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="../../../../../index.html" class="hover:text-gray-300">Home</a>
+                <a href="../../../../guide/index.html" class="hover:text-gray-300">Guide</a>
+                <a href="../../../kb/index.html" class="hover:text-gray-300">Stuff</a>
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" id="dark-mode-toggle" class="hidden">
+                    <label for="dark-mode-toggle" class="cursor-pointer text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </label>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="../../../../../index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Home</a>
+            <a href="../../../../guide/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Guide</a>
+            <a href="../../../kb/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Stuff</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-6 py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Table of Contents -->
+            <aside class="lg:w-1/4 lg:sticky top-24 self-start">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold primary-text mb-4">Table of Contents</h3>
+                    <nav class="toc">
+                        <a href="#introduction">Introduction</a>
+                        <a href="#definition-staging">Definition and Staging</a>
+                        <a href="#pathophysiology">Pathophysiology</a>
+                        <a href="#diagnosis">Clinical Evaluation and Diagnosis</a>
+                        <a href="#management">Management Principles</a>
+                        <a href="#rrt">Indications for RRT</a>
+                        <a href="#conclusion">Conclusion</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Topic Content -->
+            <article class="w-full lg:w-3/4">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <a href="../../internal-medicine.html" class="text-sm accent-text hover:underline mb-4 inline-block">&larr; Back to Internal Medicine Topics</a>
+                    <h1 class="text-4xl font-bold primary-text mb-2">Acute Kidney Injury (AKI)</h1>
+                    <p class="text-gray-500 mb-2">Last updated: July 24, 2025</p>
+                    <p class="text-gray-500 mb-8">Author(s): Dr. Gemini</p>
+
+                    <section id="introduction" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">1.0 Introduction</h2>
+                        <p class="text-gray-700 leading-relaxed">Acute Kidney Injury (AKI) is a clinical syndrome characterized by an abrupt decline in glomerular filtration rate (GFR), leading to the accumulation of nitrogenous waste products and dysregulation of fluid, electrolyte, and acid-base homeostasis. While a global health issue, the incidence and etiological spectrum of AKI in sub-Saharan Africa, and specifically Nigeria, present unique challenges. The triad of infectious diseases, unregulated exposure to nephrotoxins, and high rates of obstetric and trauma-related complications creates a distinct epidemiological landscape compared to high-income countries. This review aims to provide a comprehensive, technically-focused overview of the pathophysiology, diagnosis, and management of AKI, tailored to the realities of clinical practice in Nigeria.</p>
+                    </section>
+
+                    <section id="definition-staging" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">2.0 Definition and Staging</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">The contemporary definition of AKI relies on the consensus-driven Kidney Disease: Improving Global Outcomes (KDIGO) criteria, which standardize diagnosis based on changes in serum creatinine (sCr) and urine output.</p>
+                        <h3 class="text-xl font-semibold primary-text mb-2">2.1 KDIGO Diagnostic Criteria</h3>
+                        <p>An AKI diagnosis is established if any of the following are met:</p>
+                        <ul class="list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                            <li>An increase in sCr by ≥0.3 mg/dL (≥26.5 µmol/L) within a 48-hour period.</li>
+                            <li>An increase in sCr to ≥1.5 times a known or presumed baseline value within the preceding 7 days.</li>
+                            <li>A reduction in urine volume to <0.5 mL/kg/hour for a duration of 6 hours.</li>
+                        </ul>
+                        <h3 class="text-xl font-semibold primary-text mt-4 mb-2">2.2 KDIGO Staging of Severity</h3>
+                        <p class="mb-4">The severity of AKI is stratified into three stages, which correlate with patient outcomes.</p>
+                        <table class="min-w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr>
+                                    <th class="border border-gray-300 p-2">Stage</th>
+                                    <th class="border border-gray-300 p-2">Serum Creatinine Criteria</th>
+                                    <th class="border border-gray-300 p-2">Urine Output Criteria</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">1</td>
+                                    <td class="border border-gray-300 p-2">1.5–1.9 times baseline OR ≥0.3 mg/dL increase</td>
+                                    <td class="border border-gray-300 p-2"><0.5 mL/kg/h for 6-12 hours</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">2</td>
+                                    <td class="border border-gray-300 p-2">2.0–2.9 times baseline</td>
+                                    <td class="border border-gray-300 p-2"><0.5 mL/kg/h for ≥12 hours</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-300 p-2">3</td>
+                                    <td class="border border-gray-300 p-2">≥3.0 times baseline OR Increase in sCr to ≥4.0 mg/dL (353.6 µmol/L) OR Initiation of Renal Replacement Therapy (RRT)</td>
+                                    <td class="border border-gray-300 p-2"><0.3 mL/kg/h for ≥24 hours OR Anuria for ≥12 hours</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section id="pathophysiology" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">3.0 Pathophysiology and Etiological Classification</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">AKI is mechanistically classified into three categories: pre-renal, intrinsic renal, and post-renal.</p>
+                        <h3 class="text-xl font-semibold primary-text mb-2">3.1 Pre-Renal AKI</h3>
+                        <p class="text-gray-700 leading-relaxed mb-2">This is a functional response to renal hypoperfusion without parenchymal damage. Reduced renal blood flow triggers intra-renal autoregulatory mechanisms, including afferent arteriolar vasodilation (via prostaglandins) and efferent arteriolar vasoconstriction (via angiotensin II), to maintain GFR. When systemic hemodynamics are severely compromised, these mechanisms fail.</p>
+                        <p class="font-semibold text-gray-700">Etiologies in Nigeria:</p>
+                        <ul class="list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                            <li><strong>Absolute Volume Depletion:</strong> Severe dehydration from gastroenteritis (e.g., cholera, rotavirus), haemorrhagic shock (road traffic accidents, postpartum haemorrhage).</li>
+                            <li><strong>Reduced Effective Circulating Volume:</strong> Distributive shock from sepsis (e.g., malaria, typhoid, pneumonia) is a leading cause. Systemic vasodilation and capillary leak reduce central blood volume. Other causes include advanced cardiac failure and hepatorenal syndrome.</li>
+                            <li><strong>Pharmacological:</strong> NSAIDs inhibit prostaglandin synthesis, impairing afferent vasodilation. ACE inhibitors and ARBs block angiotensin II, causing efferent vasodilation and reducing filtration pressure.</li>
+                        </ul>
+                        <h3 class="text-xl font-semibold primary-text mt-4 mb-2">3.2 Intrinsic AKI</h3>
+                         <p class="text-gray-700 leading-relaxed mb-2">This involves direct structural damage to the kidney parenchyma.</p>
+                        <ul class="list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                            <li><strong>Acute Tubular Necrosis (ATN):</strong> The most common form of intrinsic AKI, resulting from either ischemia or nephrotoxicity.
+                                <ul class="list-circle pl-5 space-y-1 mt-1">
+                                    <li><em>Ischemic ATN:</em> Represents the endpoint of severe or prolonged pre-renal AKI.</li>
+                                    <li><em>Nephrotoxic ATN:</em> Caused by substances like aminoglycosides, traditional herbal preparations ("Agbo"), heavy metals, radiocontrast media, myoglobin (rhabdomyolysis), and hemoglobin (hemolysis).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Acute Glomerulonephritis (AGN):</strong> Immune-mediated inflammation of the glomeruli.</li>
+                            <li><strong>Acute Interstitial Nephritis (AIN):</strong> Inflammation of the renal interstitium, typically from drugs or infections.</li>
+                        </ul>
+                        <h3 class="text-xl font-semibold primary-text mt-4 mb-2">3.3 Post-Renal AKI</h3>
+                        <p class="text-gray-700 leading-relaxed mb-2">Caused by obstruction of the urinary tract. Increased hydrostatic pressure in Bowman's space opposes glomerular filtration.</p>
+                        <p class="font-semibold text-gray-700">Etiologies:</p>
+                         <ul class="list-disc pl-5 space-y-2 mt-2 text-gray-700">
+                            <li>Benign prostatic hyperplasia (BPH) and prostate carcinoma are the most frequent causes in men.</li>
+                            <li>In women, advanced cervical cancer is a key cause.</li>
+                            <li>Bilateral ureteric stones or a blocked urethral catheter are other important considerations.</li>
+                        </ul>
+                    </section>
+
+                    <section id="diagnosis" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">4.0 Clinical Evaluation and Diagnosis</h2>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li><strong>History and Physical Examination:</strong> Focus on drug history (including herbal remedies), volume status, and signs of urinary obstruction.</li>
+                            <li><strong>Urinalysis:</strong> A critical, non-invasive tool.
+                                <ul class="list-circle pl-5 space-y-1 mt-1">
+                                    <li><em>Pre-renal:</em> Bland sediment, high specific gravity, low FENa <1%.</li>
+                                    <li><em>ATN:</em> Muddy brown granular casts, Isosthenuria, and FENa >2%.</li>
+                                    <li><em>AGN:</em> Red blood cell casts, dysmorphic red cells, and proteinuria.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Biochemistry:</strong> Serial measurement of electrolytes, urea, and creatinine is essential.</li>
+                            <li><strong>Renal Ultrasonography:</strong> Essential for ruling out post-renal obstruction (hydronephrosis).</li>
+                        </ul>
+                    </section>
+
+                    <section id="management" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">5.0 Management Principles</h2>
+                        <p class="text-gray-700 leading-relaxed mb-4">Management is multifaceted, focusing on reversing the underlying cause and providing supportive care.</p>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li><strong>Hemodynamic Optimization:</strong> Prompt and adequate volume resuscitation with isotonic crystalloids.</li>
+                            <li><strong>Discontinuation of Nephrotoxins:</strong> All potentially offending agents must be stopped immediately.</li>
+                            <li><strong>Relief of Obstruction:</strong> Urgent urinary catheterization or nephrostomy tube placement.</li>
+                            <li><strong>Management of Complications:</strong>
+                                <ul class="list-circle pl-5 space-y-1 mt-1">
+                                    <li><em>Hyperkalemia:</em> An acute medical emergency. Managed with IV calcium gluconate, insulin-dextrose, beta-2 agonists, and potentially RRT.</li>
+                                    <li><em>Metabolic Acidosis:</em> Severe acidemia (pH < 7.1) may require intravenous sodium bicarbonate.</li>
+                                    <li><em>Volume Overload:</em> Managed with fluid restriction and high-dose loop diuretics.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="rrt" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">6.0 Indications for Renal Replacement Therapy (RRT)</h2>
+                        <p class="text-gray-700 leading-relaxed mb-2">The "AEIOU" mnemonic serves as a clinical guide for the initiation of urgent RRT:</p>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li><strong>A</strong> - Acidosis: Severe metabolic acidosis (e.g., pH < 7.1) refractory to medical therapy.</li>
+                            <li><strong>E</strong> - Electrolytes: Refractory and severe hyperkalemia (e.g., K+ > 6.5 mmol/L with ECG changes).</li>
+                            <li><strong>I</strong> - Ingestions: Dialyzable toxins (e.g., methanol, ethylene glycol, salicylates).</li>
+                            <li><strong>O</strong> - Overload: Refractory volume overload causing pulmonary edema.</li>
+                            <li><strong>U</strong> - Uremia: Symptomatic uremia (encephalopathy, pericarditis, intractable bleeding).</li>
+                        </ul>
+                    </section>
+
+                    <section id="conclusion" class="content-section">
+                        <h2 class="text-2xl font-bold primary-text mb-4">7.0 Conclusion and Future Directions</h2>
+                        <p class="text-gray-700 leading-relaxed">Acute Kidney Injury poses a substantial public health burden in Nigeria. Prompt recognition, rapid identification of the etiology, and systematic management are critical. Future efforts must focus on public health initiatives to reduce nephrotoxin exposure, improve primary care, and enhance access to diagnostics and RRT.</p>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="primary-bg text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 House Officers’ Guide.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-opacity duration-300" style="display: none;">
+        &uarr; Top
+    </button>
+
+    <script src="../../../../../app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
