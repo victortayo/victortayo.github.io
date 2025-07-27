@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poisons and Antidotes - HO Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; background-color: #f7f9fc; }
+        .primary-bg { background-color: #003049; }
+        .primary-text { color: #003049; }
+        .accent-text { color: #00a8e8; }
+        .toc a { display: block; padding: 0.5rem 1rem; border-left: 2px solid transparent; }
+        .toc a:hover { background-color: #eef2f7; border-left-color: #00a8e8; }
+        .content-section { scroll-margin-top: 4rem; }
+
+        @media (max-width: 768px) {
+            main.container {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            article .p-8 {
+                padding: 1rem;
+            }
+            p {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../../../../styles/dark-mode.css">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="primary-bg text-white shadow-md sticky top-0 z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../../../index.html" class="text-2xl font-bold">HO Guide</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="../../../../index.html" class="hover:text-gray-300">Home</a>
+                <a href="../../../guide/index.html" class="hover:text-gray-300">Guide</a>
+                <a href="../../index.html" class="hover:text-gray-300">Stuff</a>
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" id="dark-mode-toggle" class="hidden">
+                    <label for="dark-mode-toggle" class="cursor-pointer text-white">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </label>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="../../../../index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Home</a>
+            <a href="../../../guide/index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Guide</a>
+            <a href="../../index.html" class="block px-6 py-2 text-white hover:bg-gray-700">Stuff</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-6 py-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Table of Contents -->
+            <aside class="lg:w-1/4 lg:sticky top-24 self-start">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold primary-text mb-4">Table of Contents</h3>
+                    <nav class="toc">
+                        <a href="#abstract">Abstract</a>
+                        <a href="#introduction">Introduction</a>
+                        <a href="#formulary">Poison and Antidote Formulary</a>
+                        <a href="#discussion">Systemic Challenges in Toxicological Management</a>
+                        <a href="#conclusion">Conclusion</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Topic Content -->
+            <article class="w-full lg:w-3/4">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <a href="../general-stuff.html" class="text-sm accent-text hover:underline mb-4 inline-block">&larr; Back to General Stuff</a>
+                    <h1 class="text-4xl font-bold primary-text mb-2">Poisons and Antidotes for Clinical Practice in Nigeria</h1>
+                    <p class="text-gray-500 mb-2">Last updated: July 27, 2025</p>
+                    <p class="text-gray-500 mb-8">Author(s): HO Guide</p>
+
+                    <section id="abstract" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">Abstract</h2>
+                        <p class="text-gray-700 leading-relaxed">The management of acute poisoning is a significant medical challenge in Nigeria, compounded by factors such as the prevalence of specific local toxins, limited availability of antidotes, and challenges within the healthcare infrastructure. Standard toxicological formularies, while universally useful, require adaptation to reflect the specific epidemiological and resource context of the region. This article presents a refined list of common poisons and their corresponding antidotes, tailored for the Nigerian clinical environment. It incorporates locally prevalent toxins, including agrochemicals and traditional poisons, and provides pragmatic clinical considerations. Furthermore, it discusses the systemic challenges impacting toxicological management in Nigeria, such as antidote stocking, the critical role of supportive care, and the necessity for robust poison control infrastructure, to provide a comprehensive guide for clinicians.</p>
+                    </section>
+
+                    <section id="introduction" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">1. Introduction</h2>
+                        <p class="text-gray-700 leading-relaxed">Acute poisoning represents a substantial cause of morbidity and mortality globally, with a disproportionate burden on low- and middle-income countries. In Nigeria, poisoning cases arise from a diverse array of sources, including accidental ingestion of household products like kerosene, pharmaceuticals, environmental and industrial exposures, agrochemicals, and traditional remedies. Studies indicate that common agents include organophosphates, kerosene, counterfeit or mishandled medications, and contaminated food.</p>
+                        <p class="text-gray-700 leading-relaxed">The effective management of a poisoned patient hinges on rapid diagnosis, supportive care, and the timely administration of the correct antidote. However, clinicians in Nigeria face unique obstacles. Studies have revealed generally poor knowledge of specific antidotes among healthcare providers and a critical lack of antidote availability in many healthcare facilities. These challenges underscore the need for a clinical resource that is not only evidence-based but also pragmatically adapted to the local realities of Nigerian medical practice. This document aims to provide such a resource.</p>
+                    </section>
+
+                    <section id="formulary" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">2. Poison and Antidote Formulary</h2>
+                        <p class="text-gray-700 leading-relaxed">The following table categorizes poisons and their management strategies, with specific notes relevant to the Nigerian context.</p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-300">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b">POISON CATEGORY</th>
+                                        <th class="py-2 px-4 border-b">POISONING AGENT</th>
+                                        <th class="py-2 px-4 border-b">ANTIDOTE / MANAGEMENT PROTOCOL</th>
+                                        <th class="py-2 px-4 border-b">CLINICAL CONSIDERATIONS FOR THE NIGERIAN CONTEXT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b font-bold" rowspan="10">Pharmaceuticals</td>
+                                        <td class="py-2 px-4 border-b">Acetaminophen (Paracetamol)</td>
+                                        <td class="py-2 px-4 border-b">N-acetylcysteine (NAC)</td>
+                                        <td class="py-2 px-4 border-b">Paracetamol overdose is extremely common. Early administration of NAC is crucial to prevent hepatotoxicity. Ensure availability and correct calculation of loading and maintenance doses.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Barbiturates</td>
+                                        <td class="py-2 px-4 border-b">Supportive Care, Urine Alkalinization, Multiple-Dose Activated Charcoal, Hemodialysis</td>
+                                        <td class="py-2 px-4 border-b">Primary management is supportive. Access to hemodialysis may be limited; focus on enhancing elimination through alkalinization and charcoal where appropriate.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Benzodiazepines</td>
+                                        <td class="py-2 px-4 border-b">Flumazenil</td>
+                                        <td class="py-2 px-4 border-b">Use with extreme caution as it can precipitate seizures in patients with co-ingestions (e.g., TCAs) or chronic users. Supportive care is often sufficient and safer.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Beta-blockers & Calcium Channel Blockers</td>
+                                        <td class="py-2 px-4 border-b">Glucagon, High-Dose Insulin Euglycemic Therapy (HIET), Calcium Salts</td>
+                                        <td class="py-2 px-4 border-b">Glucagon is traditional. HIET is highly effective for severe cardiotoxicity but requires intensive glucose monitoring, which can be challenging.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Digoxin</td>
+                                        <td class="py-2 px-4 border-b">Digoxin Immune Fab</td>
+                                        <td class="py-2 px-4 border-b">Highly effective but prohibitively expensive and scarce in Nigeria. Management often relies on supportive care of arrhythmias and electrolyte correction.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Iron Salts</td>
+                                        <td class="py-2 px-4 border-b">Deferoxamine</td>
+                                        <td class="py-2 px-4 border-b">Common in pediatric cases from accidental ingestion of prenatal supplements. Deferoxamine is the specific chelator.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Isoniazid (INH)</td>
+                                        <td class="py-2 px-4 border-b">Pyridoxine (Vitamin B6) - high dose</td>
+                                        <td class="py-2 px-4 border-b">Essential due to the high burden of tuberculosis. Must be available in settings where TB is treated to manage acute overdose, which can be challenging.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Opioids (e.g., Tramadol, Codeine)</td>
+                                        <td class="py-2 px-4 border-b">Naloxone</td>
+                                        <td class="py-2 px-4 border-b">Tramadol abuse and overdose are significant problems. Naloxone is life-saving but may require repeated doses or an infusion due to its shorter half-life compared to some opioids.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Salicylates (Aspirin)</td>
+                                        <td class="py-2 px-4 border-b">Sodium Bicarbonate (for urine alkalinization), Activated Charcoal, Hemodialysis</td>
+                                        <td class="py-2 px-4 border-b">Urine alkalinization is a critical and accessible intervention. Hemodialysis is reserved for severe cases.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Tricyclic Antidepressants (TCAs)</td>
+                                        <td class="py-2 px-4 border-b">Sodium Bicarbonate</td>
+                                        <td class="py-2 px-4 border-b">Essential for managing cardiotoxicity (QRS widening and ventricular dysrhythmias).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b font-bold" rowspan="5">Household & Industrial Chemicals</td>
+                                        <td class="py-2 px-4 border-b">Carbon Monoxide</td>
+                                        <td class="py-2 px-4 border-b">100% Oxygen; Hyperbaric Oxygen (if available)</td>
+                                        <td class="py-2 px-4 border-b">Poisoning from indoor generator use is a major cause of morbidity and mortality. High-flow oxygen is the cornerstone of treatment as hyperbaric therapy is virtually unavailable.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Cyanide</td>
+                                        <td class="py-2 px-4 border-b">Hydroxocobalamin or Sodium Nitrite + Sodium Thiosulfate</td>
+                                        <td class="py-2 px-4 border-b">Often related to industrial exposure or ingestion of certain plant materials (e.g., cassava). Hydroxocobalamin has a better safety profile but is rare; the traditional nitrite/thiosulfate kit may be more accessible.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Ethylene Glycol & Methanol</td>
+                                        <td class="py-2 px-4 border-b">Fomepizole or Ethanol; Dialysis</td>
+                                        <td class="py-2 px-4 border-b">Can result from consumption of illicitly brewed spirits. Fomepizole is the definitive antidote but is costly. Intravenous or oral ethanol can serve as a temporizing measure. Dialysis is crucial for definitive removal.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Kerosene</td>
+                                        <td class="py-2 px-4 border-b">Supportive Care (DO NOT induce emesis)</td>
+                                        <td class="py-2 px-4 border-b">A leading cause of accidental childhood poisoning in Nigeria. The primary risk is chemical pneumonitis. Management is supportive, focusing on respiratory function.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Organophosphates & Carbamates</td>
+                                        <td class="py-2 px-4 border-b">Atropine, Pralidoxime (for organophosphates)</td>
+                                        <td class="py-2 px-4 border-b">Widespread use as pesticides leads to high incidence of both accidental and intentional poisoning. Atropinization is a critical, life-saving intervention. Pralidoxime must be given early to be effective.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b font-bold" rowspan="1">Heavy Metals</td>
+                                        <td class="py-2 px-4 border-b">Lead</td>
+                                        <td class="py-2 px-4 border-b">Succimer (DMSA), Dimercaprol (BAL), Calcium Disodium EDTA</td>
+                                        <td class="py-2 px-4 border-b">A significant public health problem in certain regions due to artisanal mining and environmental contamination. Chelation therapy is complex and requires specialist oversight.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b font-bold" rowspan="1">Biological Toxins</td>
+                                        <td class="py-2 px-4 border-b">Snake Bites</td>
+                                        <td class="py-2 px-4 border-b">Antivenom (polyvalent or species-specific)</td>
+                                        <td class="py-2 px-4 border-b">A major issue, particularly in rural areas. Availability of effective, affordable polyvalent antivenom is a persistent challenge. Supportive care is vital.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b font-bold" rowspan="1">Traditional/Herbal Remedies</td>
+                                        <td class="py-2 px-4 border-b">Supportive Care; specific interventions vary</td>
+                                        <td class="py-2 px-4 border-b">Toxicity is common but often difficult to diagnose due to unknown ingredients. Management is guided by the observed clinical syndrome (toxidrome).</td>
+                                        <td class="py-2 px-4 border-b"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    <section id="discussion" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">3. Systemic Challenges in Toxicological Management</h2>
+                        <p class="text-gray-700 leading-relaxed">The effective application of the formulary above is contingent on addressing several systemic issues within the Nigerian healthcare landscape.</p>
+                        <p class="text-gray-700 leading-relaxed"><strong>Antidote Availability and Stocking:</strong> The scarcity of essential antidotes in Nigerian hospitals is a widely reported and critical problem. Factors include high cost, logistical challenges, and a lack of standardized stocking guidelines. A national policy on essential antidote lists and a coordinated system for stocking and distribution, perhaps on a regional basis, are urgently needed.</p>
+                        <p class="text-gray-700 leading-relaxed"><strong>The Primacy of Supportive Care:</strong> Given the inconsistent availability of antidotes, proficiency in supportive care is the most critical skill for a clinician managing a poisoned patient in this context. This includes aggressive airway management, hemodynamic support, correction of metabolic derangements, and management of seizures. In many cases, excellent supportive care is the determinant of patient survival.</p>
+                        <p class="text-gray-700 leading-relaxed"><strong>Need for a National Poison Control Center:</strong> While efforts have been made, Nigeria still lacks a fully functional, nationwide network of poison information and control centers. Such centers are vital for providing 24/7 expert advice to both clinicians and the public, facilitating poison surveillance, and guiding public health interventions.</p>
+                        <p class="text-gray-700 leading-relaxed"><strong>Public Health and Prevention:</strong> Many poisoning incidents, particularly in children, are preventable. Public education campaigns focusing on safe storage of kerosene, chemicals, and medications are essential. Improving sanitation and food handling practices can reduce food poisoning outbreaks.</p>
+                    </section>
+
+                    <section id="conclusion" class="content-section mb-8">
+                        <h2 class="text-2xl font-bold primary-text mb-4">4. Conclusion</h2>
+                        <p class="text-gray-700 leading-relaxed">While a comprehensive list of poisons and antidotes is a fundamental tool, its utility in the Nigerian context is magnified when adapted to local toxicological patterns and resource availability. This article provides a refined formulary and highlights the overarching challenges that must be addressed to improve the management of poisoning. The emphasis must be on a dual approach: empowering clinicians with pragmatic, context-relevant knowledge while simultaneously advocating for systemic improvements in antidote accessibility, poison control infrastructure, and public health education. Such a strategy is essential to reduce the significant morbidity and mortality associated with poisoning in Nigeria.</p>
+
+                        <h2 class="text-2xl font-bold primary-text mb-4">POISON AND ANTIDOTE QUICK REFERENCE</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-300">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b">POISON</th>
+                                        <th class="py-2 px-4 border-b">ANTIDOTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Acetaminophen</td>
+                                        <td class="py-2 px-4 border-b">N-acetylcysteine</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Arsenic</td>
+                                        <td class="py-2 px-4 border-b">Dimercaprol, Succimer</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Barbiturates</td>
+                                        <td class="py-2 px-4 border-b">Urine Alkalinization, Dialysis, Activated Charcoal</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Benzodiazepines</td>
+                                        <td class="py-2 px-4 border-b">Flumazenil</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Beta-blockers</td>
+                                        <td class="py-2 px-4 border-b">Glucagon</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Caffeine</td>
+                                        <td class="py-2 px-4 border-b">Esmolol</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Carbon monoxide</td>
+                                        <td class="py-2 px-4 border-b">100% Oxygen, Hyperbaric oxygen</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Cholinesterase inhibitors</td>
+                                        <td class="py-2 px-4 border-b">Atropine</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Copper</td>
+                                        <td class="py-2 px-4 border-b">Penicillamine</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Cyanide</td>
+                                        <td class="py-2 px-4 border-b">Nitrite, Sodium thiosulfate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Digoxin</td>
+                                        <td class="py-2 px-4 border-b">Digibind</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Ethylene glycol</td>
+                                        <td class="py-2 px-4 border-b">Ethanol</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Gold</td>
+                                        <td class="py-2 px-4 border-b">Dimercaprol</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Heparin</td>
+                                        <td class="py-2 px-4 border-b">Protamine sulfate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Iron Salts</td>
+                                        <td class="py-2 px-4 border-b">Deferoxamine</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Isoniazid</td>
+                                        <td class="py-2 px-4 border-b">Vitamin B6</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Lead</td>
+                                        <td class="py-2 px-4 border-b">Ca EDTA, Dimercaprol, Succimer</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Metaproterenol</td>
+                                        <td class="py-2 px-4 border-b">Esmolol</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Methanol</td>
+                                        <td class="py-2 px-4 border-b">Ethanol, Fomepizole, Dialysis</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Methemoglobin</td>
+                                        <td class="py-2 px-4 border-b">Methylene Blue</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Muscarinic receptor blockers</td>
+                                        <td class="py-2 px-4 border-b">Physostigmine</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Opioids</td>
+                                        <td class="py-2 px-4 border-b">Naloxone</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Organophosphate cholinesterase inhibitors</td>
+                                        <td class="py-2 px-4 border-b">Pralidoxime</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Phencyclidine hydrochloride (PCP)</td>
+                                        <td class="py-2 px-4 border-b">NG</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Quinidine</td>
+                                        <td class="py-2 px-4 border-b">Sodium bicarbonate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Salicylates</td>
+                                        <td class="py-2 px-4 border-b">Urine alkalinization, Dialysis, Activated Charcoal</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Snake bites</td>
+                                        <td class="py-2 px-4 border-b">Antivenin</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">TCA’s (Tricyclic antidepressants)</td>
+                                        <td class="py-2 px-4 border-b">Sodium bicarbonate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Theophylline</td>
+                                        <td class="py-2 px-4 border-b">Esmolol</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Tissue plasminogen activator (TPA), streptokinase</td>
+                                        <td class="py-2 px-4 border-b">Aminocaproic acid</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b">Warfarin</td>
+                                        <td class="py-2 px-4 border-b">Vitamin K, Fresh Frozen Plasma (FFP)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="primary-bg text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 House Officers’ Guide.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-opacity duration-300" style="display: none;">
+        &uarr; Top
+    </button>
+
+    <script src="../../../app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
